@@ -2,9 +2,9 @@ Contabilidad y Becas
 ====
 
 Modulo de Contabilidad y Becas.
-====
+
 Materia : Analisis y Diseño de Sistemas.
-====
+----
 
 Desarrollo de un sistema para la gestion de becas y contabilidad.
 Desarrollado en PHP y Mysql.
