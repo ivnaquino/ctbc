@@ -1,0 +1,24 @@
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+Options +Indexes +MultiViews +FollowSymlinks
+Options All -Indexes
+php_value zlib.output_compression 16386
+AddDefaultCharset utf-8
+ErrorDocument 404 /404.php
+
+#CheckSpelling On
+
+#RewriteRule . /index.php [L]
+#RewriteRule ^datos/(.*)\.html$ ./index.php?dato=$1
+#RewriteRule ^datos/(.*)$ ./index.php?dato=$1 [L]
+#RewriteRule ^registrarse$ ./register.php 
+#RewriteRule ^crear/articulo$ ./crearArticulo.php 
+#RewriteRule ^articulo/(.*)$ ./articulo-single.php?articuloid=$1 
+#RewriteRule ^eliminar/articulo/(.*)$ ./eliminararticulo.php?articuloid=$1 
+
+RewriteRule  ./index.php [L]
+RewriteRule ^inicio$ ./index.php [L]
+RewriteRule ^login$ ./login.php [L]
+RewriteRule ^logout$ ./logoff.php [L]
