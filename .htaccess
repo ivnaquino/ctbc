@@ -21,4 +21,4 @@ ErrorDocument 404 /404.php
 RewriteRule  ./index.php [L]
 RewriteRule ^inicio$ ./index.php [L]
 RewriteRule ^login$ ./login.php [L]
-RewriteRule ^logout$ ./logoff.php [L]
+RewriteRule ^logout$ ./logout.php [L]

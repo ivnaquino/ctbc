@@ -8,7 +8,12 @@
 
 	$layout_components = array(
 		'ruta_header' => VISTAS.'layouts'.DS.'header.php', 
-		'ruta_footer' => VISTAS.'layouts'.DS.'footer.php' 
+		'ruta_header-login' => VISTAS.'layouts'.DS.'header-login.php', 
+		'ruta_footer' => VISTAS.'layouts'.DS.'footer.php',
+		'ruta_nav' => VISTAS.'nav'.DS.'nav.php',
+		'ruta_alumno' => VISTAS.'components'.DS.'alumno.php',
+		'ruta_contador' => VISTAS.'components'.DS.'contador.php',
+		'ruta_administrativo' => VISTAS.'components'.DS.'administrativo.php',
 		);
 
 ?>

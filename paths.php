@@ -7,6 +7,7 @@
 	define('APP_PATH', ROOT.'application'.DS);
 	define('PUBLICO', ROOT.'public'.DS);
 	define('VISTAS', ROOT.'views'.DS);
+	define('CORE', APP_PATH.'Core'.DS);
 
 
 ?>
