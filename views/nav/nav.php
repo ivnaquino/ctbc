@@ -9,7 +9,11 @@
 			<a class="brand" href="#"><?php echo $usuario['nombre'].' '.$usuario['apellidopat'].' '.$usuario['apellidomat']; ?></a>
 			<div class="nav-collapse">
 				<ul class="nav">
-					
+					<?php if($_params){ ?>
+						<?php foreach ($_params as $tab): ?>
+							<li><a href="/<?php echo $_SESSION['tipo']; ?>/<?php echo $tab ?>"><?php echo $tab; ?></a></li>
+						<?php endforeach ?>
+					<?php  } ?>
 				</ul>
 				<ul class="nav pull-right">
 					<li><a href="/logout">Cerrar sesion</a></li>

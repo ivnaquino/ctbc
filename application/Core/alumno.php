@@ -8,18 +8,20 @@ class Alumno{
 	{
 		$connection = Connection::conectar();
 		$alumno = array(
+			'matricula' => '',
 			'nombre' => '',
 			'apellidopat' => '',
 			'apellidomat' => ''
 			);
-		$query = 'SELECT nombre,apellidopat,apellidomat FROM alumno WHERE matricula = ? LIMIT 1';
+		$query = 'SELECT matricula,nombre,apellidopat,apellidomat FROM alumno WHERE matricula = ? LIMIT 1';
 		$statement = $connection->prepare($query);
 		$statement->bind_param('s',$matricula);
 		$statement->execute();
 		$statement->store_result();
-		$statement->bind_result($alumno['nombre'],$alumno['apellidopat'],$alumno['apellidomat']);
+		$statement->bind_result($alumno['matricula'],$alumno['nombre'],$alumno['apellidopat'],$alumno['apellidomat']);
 		$statement->fetch();
 
+		mysqli_close($connection);
 		return $alumno;
 	}
 
@@ -45,6 +47,7 @@ class Alumno{
 				);
 			array_push($alumnos, $datos);
 		}
+		mysqli_close($connection);
 		return $alumnos;
 	}
 

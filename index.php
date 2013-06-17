@@ -1,11 +1,5 @@
 <?php 
 	require_once "paths.php";
-	require_once APP_PATH.'database.php';
-	require_once CORE.'connection.php';
-	require_once CORE.'auth.php';
-	require_once CORE.'alumno.php';
-	require_once CORE.'administrativo.php';
-	require_once APP_PATH.'layout.php';
 
 	if (!Auth::logged_on()) {
 		header('Location: /login');
@@ -14,7 +8,16 @@
 	require_once $layout_components['ruta_header'];
 	require_once $layout_components['ruta_nav'];
 
-	Auth::cargar_vista();
+		
+		if ($_SESSION['tipo'] == 'contaduria') {
+			header('Location: /contaduria/');
+		}
+		if ($_SESSION['tipo'] == 'alumno') {
+			header('Location: /alumno');
+		}
+		if ($_SESSION['tipo'] == 'becas') {
+			header('Location: /becas/');
+		}
 ?>
 
 

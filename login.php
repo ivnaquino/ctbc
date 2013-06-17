@@ -8,7 +8,9 @@
 	require_once APP_PATH.'layout.php';
 
 	require_once $layout_components['ruta_header-login'];
-	
+	if (Auth::logged_on()) {
+		header('Location: /');
+	}
 
 ?>
 	<div class="separador-top"></div>
@@ -21,13 +23,13 @@
 							$matricula = $_POST['matricula'];
 							$password = $_POST['password'];
 							$verificar = Auth::login($matricula,$password);
-							if ($verificar) {
+							if ($verificar['estado']) {
 								header('Location: /');
 							}else{
 								echo '
 								<div class="alert alert-error">
 									<a class="close" data-dismiss="alert">&times;</a>
-									<strong>Error!</strong> Los datos ingresados son incorrectos.
+									<strong>Error!</strong> '.$verificar['datos'].'
 								</div>
 								';
 							}
@@ -39,13 +41,13 @@
 							<div class="control-group">
 								<label class="control-label" for="matricula">Matricula</label>
 								<div class="controls">
-									<input type="text" class="span4" id="matricula" name='matricula'>
+									<input type="text" class="span4" id="matricula" name='matricula' placeholder='Matricula'>
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="password">Contraseña</label>
 								<div class="controls">
-									<input type="password" class="span4" id="password" name='password'>
+									<input type="password" class="span4" id="password" name='password' placeholder='Contraseña'>
 								</div>
 							</div>
 							

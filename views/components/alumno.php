@@ -1,9 +1,23 @@
 
+<?php $pago_alumno = Pago::alumno($usuario['matricula']); ?>
+<?php $beca_alumno = Beca::alumno($usuario['matricula']);?>
+
+
 <section class="container">
 	<div class="row">
 		<section class="span7"></section>
 		<section class="span5 status">
-			<strong>Estado de la beca </strong> <span class="label label-success">&nbsp;&nbsp;Activo&nbsp;&nbsp;</span>
+			<strong>Estado de la beca </strong> 
+			<?php if (isset($beca_alumno)): ?>
+				<?php if ($beca_alumno['estado']==1): ?>
+					<span class="label label-success">&nbsp;&nbsp;Activo&nbsp;&nbsp;</span>
+				<?php else: ?>
+					<span class="label label-error">&nbsp;&nbsp;Inactivo&nbsp;&nbsp;</span>
+				<?php endif ?>
+			<?php else: ?>
+				<span class="label label-error">&nbsp;&nbsp;No asignada&nbsp;&nbsp;</span>
+			<?php endif ?>
+			
 			<span class="label label-info">&nbsp;&nbsp;Sesion iniciada&nbsp;&nbsp;</span>
 		</section>
 	</div><br>
@@ -14,33 +28,28 @@
 				<tr>
 					<th>Fecha</th>
 					<th>Concepto</th>
+					<th>Recargo</th>
 					<th>Monto</th>
-					<th>Adeudo</th>
-					<th>Descuento</th>
+					<th>Estado</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>data</td>
-					<td>data</td>
-					<td>data</td>
-					<td>data</td>
-					<td>data</td>
-				</tr>
-				<tr>
-					<td>data</td>
-					<td>data</td>
-					<td>data</td>
-					<td>data</td>
-					<td>data</td>
-				</tr>
-				<tr>
-					<td>data</td>
-					<td>data</td>
-					<td>data</td>
-					<td>data</td>
-					<td>data</td>
-				</tr>
+				<?php if (isset($pago_alumno)): ?>
+					<?php foreach ($pago_alumno as $pago): ?>
+						<tr>
+							<td>
+								<?php 
+									$date = date_create($pago['fecha']);  
+									echo date_format($date, 'd / m / Y');
+								?>
+							</td>
+							<td><?php echo $pago['concepto']?></td>
+							<td><?php echo $pago['recargo']?></td>
+							<td>$ <?php echo $pago['monto']?></td>
+							<td><?php echo $pago['estado']?></td>
+						</tr>
+					<?php endforeach ?>
+				<?php endif ?>
 			</tbody>
 		</table>
 		</div>
