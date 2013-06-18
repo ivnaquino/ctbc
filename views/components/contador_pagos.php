@@ -23,13 +23,26 @@ if (isset($_POST['aceptar'])) {
 					<div class="control-group">
 						<label for="matricula" class="control-label">Matricula: </label>
 						<div class="controls">
-							<input type="text" id='matricula' class='span5' name='matricula' placeholder='Matricula'>
+							<input type="text" id='matricula' class='span4' name='matricula' placeholder='Matricula'>
+							<button type='submit' name='setear' class='btn btn-link'>Establecer</button>
 						</div>
 					</div>
 					<div class="control-group">
 						<label for="nombre" class='control-label'>Nombre</label>
 						<div class="controls">
 							<input type="text" name='nombre' id='nombre' class='span5' placeholder='Nombre' disabled >
+						</div>
+					</div>
+					<div class="control-group">
+						<label for="carrera" class='control-label'>Carrera</label>
+						<div class="controls">
+							<input type="text" id='carrera' name='carrera' class='span5' placeholder='Carrera' disabled>
+						</div>
+					</div>
+					<div class="control-group">
+						<label for="descuento" class='control-label'>Descuento</label>
+						<div class="controls">
+							<input type="text" id='descuento' name='descuento' class='span5' placeholder='Descuento' disabled>
 						</div>
 					</div>
 					<div class="control-group">
@@ -55,6 +68,7 @@ if (isset($_POST['aceptar'])) {
 					</div>
 					<div class="form-actions">
 						<button type='submit' class='btn btn-primary' name='aceptar' value='aceptar'>Aceptar</button>
+						<button type='submit' class='btn btn-warning' name='aplazar' value='aplazar'>Aplazar</button>
 					</div>
 				</form>
 			</div>

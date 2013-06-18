@@ -1,3 +1,4 @@
+
 <?php  
 	require_once "paths.php";
 	
@@ -17,10 +18,10 @@
 	$tabs = array('Inicio','Solicitudes');
 
 	if ($seccion == 'inicio') {
-		View::renderizar('becas',$tabs);
+		View::renderizar('becas_inicio',$tabs);
 	}
 	if ($seccion == 'solicitudes') {
-		View::renderizar('becas',$tabs);
+		View::renderizar('becas_solicitud',$tabs);
 	}
 
 	
