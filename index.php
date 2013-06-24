@@ -18,6 +18,9 @@
 		if ($_SESSION['tipo'] == 'becas') {
 			header('Location: /becas/');
 		}
+		if ($_SESSION['tipo'] == 'admin') {
+			header('Location: /admin');
+		}
 ?>
 
 

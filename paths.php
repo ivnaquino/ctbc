@@ -18,5 +18,6 @@
 	require_once CORE.'administrativo.php';
 	require_once CORE.'pago.php';
 	require_once CORE.'beca.php';
+	require_once CORE.'grupo.php';
 
 ?>

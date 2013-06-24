@@ -16,26 +16,14 @@
 				<tbody>
 					<?php if ($pagos): ?>
 						<?php foreach ($pagos as $pago): ?>
-							<?php if ($pago['estado'] == 'pagado'): ?>
-								<tr class="success">
-									<td><?php echo $pago['matricula']; ?></td>
-									<td><?php $date = date_create($pago['fecha']);  echo date_format($date, 'd/m/Y'); ?></td>
-									<td><?php echo $pago['concepto']; ?></td>
-									<td>$ <?php echo $pago['recargo']; ?></td>
-									<td>$ <?php echo $pago['monto']; ?></td>
-									<td><?php echo $pago['estado']; ?></td>
-								</tr>
-							<?php endif ?>
-							<?php if ($pago['estado'] == 'aplazado'): ?>
-								<tr class="warning">
-									<td><?php echo $pago['matricula']; ?></td>
-									<td><?php $date = date_create($pago['fecha']);  echo date_format($date, 'd/m/Y'); ?></td>
-									<td><?php echo $pago['concepto']; ?></td>
-									<td>$ <?php echo $pago['recargo']; ?></td>
-									<td>$ <?php echo $pago['monto']; ?></td>
-									<td><?php echo $pago['estado']; ?></td>
-								</tr>
-							<?php endif ?>
+							<tr>
+								<td><?php echo $pago['matricula']; ?></td>
+								<td><?php $date = date_create($pago['fecha']);  echo date_format($date, 'd/m/Y'); ?></td>
+								<td><?php echo $pago['concepto']; ?></td>
+								<td>$ <?php echo $pago['recargo']; ?></td>
+								<td>$ <?php echo $pago['monto']; ?></td>
+								<td><?php echo $pago['estado']; ?></td>
+							</tr>
 						<?php endforeach ?>
 					<?php else: ?>
 						<tr><td>No hay pagos</td></tr>

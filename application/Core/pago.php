@@ -9,7 +9,7 @@ class Pago
 
 		$pagos = array();
 
-		$query = 'SELECT matricula,fecha,concepto,recargo,monto,estado FROM pagos ORDER BY fecha DESC LIMIT 10';
+		$query = 'SELECT matricula,fecha,concepto,recargo,monto,estado FROM pagos ORDER BY fecha DESC,id DESC LIMIT 10';
 		$statement = $connection->prepare($query);
 		$statement->execute();
 		$statement->store_result();
@@ -63,7 +63,7 @@ class Pago
 		$statement->bind_param('ssssss',$pago['matricula'],$pago['fecha'],$pago['concepto'],$pago['recargo'],$pago['monto'],$pago['estado']);
 		$statement->execute();
 		$statement->store_result();
-		if ($statement->num_rows == 1) {
+		if ($statement->affected_rows == 1) {
 			mysqli_close($connection);
 			return true;
 		}else{

@@ -97,6 +97,9 @@ class Auth{
 		if ($_SESSION['tipo'] == 'becas') {
 			return Administrativo::buscar($_SESSION['matricula']);
 		}
+		if ($_SESSION['tipo'] == 'root') {
+			//return Administrativo::buscar($_SESSION['matricula']);
+		}
 	}
 
 	public static function cargar_vista($vista_actual)
