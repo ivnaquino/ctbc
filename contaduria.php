@@ -9,7 +9,7 @@
 	$seccion ;
 
 	if(!isset($_GET['tab']) || $_GET['tab']==''){
-		header('Location: /contaduria/pagos');
+		header('Location: /contaduria/pagos/');
 	}else{
 		$seccion = strtolower($_GET['tab']);
 	}

@@ -11,7 +11,7 @@
 				<ul class="nav">
 					<?php if($_params){ ?>
 						<?php foreach ($_params as $tab): ?>
-							<li><a href="/<?php echo $_SESSION['tipo']; ?>/<?php echo $tab ?>"><?php echo $tab; ?></a></li>
+							<li><a href="/<?php echo $_SESSION['tipo']; ?>/<?php echo $tab ?>/"><?php echo $tab; ?></a></li>
 						<?php endforeach ?>
 					<?php  } ?>
 				</ul>

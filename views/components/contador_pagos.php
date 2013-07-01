@@ -4,7 +4,6 @@ if (isset($_POST['setAlumno'])) {
 	$_alumno_beca_exist = Beca::exist($_alumno['matricula']);
 	if ($_alumno_beca_exist) {
 		$_alumno_beca = Beca::alumno($_alumno['matricula']);
-		
 		$_a_descuento = $_alumno_beca['descuento'];
 	}else {
 		$_a_descuento = 0;
@@ -41,7 +40,7 @@ if (isset($_POST['aplazar'])) {
 	<div class="row">
 		<section class="span8 offset2">
 			<div class="well">
-				<form action="/contaduria/pagos" class="form-horizontal" method='POST'>
+				<form action="/contaduria/pagos/" class="form-horizontal" method='POST'>
 					<legend class='text-center'>Formulario de pago</legend>
 					<div class="control-group">
 						<label for="matricula" class="control-label">Matricula: </label>
@@ -76,10 +75,10 @@ if (isset($_POST['aplazar'])) {
 						<label class="control-label" for="concepto">Concepto</label>
 						<div class="controls">
 							<select id="concepto" class='span5' name='concepto'>
-								<option value='colegiatura'>Colegiatura</option>
-								<option value='inscripcion'>Inscripcion</option>
-								<option value='examen extraordinario'>Examen Extraordinario</option>
-								<option value='examen a titulo'>Examen a titulo</option>
+								<option value='colegiatura' monto='3050'>Colegiatura</option>
+								<option value='inscripcion' monto='3200'>Inscripcion</option>
+								<option value='examen extraordinario' monto='1200'>Examen Extraordinario</option>
+								<option value='examen a titulo' monto='1500'>Examen a titulo</option>
 							</select>
 						</div>
 					</div>
@@ -102,3 +101,13 @@ if (isset($_POST['aplazar'])) {
 		</section>
 	</div>
 </section>
+
+<script>
+	$(document).on("ready",function(){
+
+	})
+	$("#concepto").on("change",function(){
+		var monto = ($("#concepto option:selected").attr('value'));
+		var desc = ($('#descuento').attr('value'));
+	});
+</script>

@@ -10,13 +10,13 @@
 
 		
 		if ($_SESSION['tipo'] == 'contaduria') {
-			header('Location: /contaduria/');
+			header('Location: /contaduria/pagos/');
 		}
 		if ($_SESSION['tipo'] == 'alumno') {
 			header('Location: /alumno');
 		}
 		if ($_SESSION['tipo'] == 'becas') {
-			header('Location: /becas/');
+			header('Location: /becas/inicio/');
 		}
 		if ($_SESSION['tipo'] == 'admin') {
 			header('Location: /admin');

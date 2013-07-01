@@ -6,5 +6,7 @@
 	<link rel="stylesheet" href="<?php echo $layout_params['ruta_css'] ?>bootstrap.css">
 	<link rel="stylesheet" href="<?php echo $layout_params['ruta_css'] ?>bootstrap-responsive.css">
 	<link rel="stylesheet" href="<?php echo $layout_params['ruta_css'] ?>base.css">
+	<script src="<?php echo $layout_params['ruta_js'] ?>jquery.js"></script>
+
 <body>
 	

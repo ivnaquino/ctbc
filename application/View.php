@@ -3,12 +3,14 @@
 class View
 {
 	public $_params;
+	public $parametro;
 
 	public function __construct(){
 	}
-	public static function renderizar($vista,$item=false){
+	public static function renderizar($vista,$item=false,$param_ver=false){
 		$ruta_v = ROOT.'views'.DS.'components'.DS.$vista.'.php';
 		$_params = $item;
+		$parametro = $param_ver;
 
 		$usuario = Auth::usuario();
 		global $layout_params;

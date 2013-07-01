@@ -10,7 +10,7 @@
 	$seccion ;
 
 	if(!isset($_GET['tab']) || $_GET['tab']==''){
-		header('Location: /becas/inicio');
+		header('Location: /becas/inicio/');
 	}else{
 		$seccion = strtolower($_GET['tab']);
 	}
@@ -22,6 +22,9 @@
 	}
 	if ($seccion == 'solicitudes') {
 		View::renderizar('becas_solicitud',$tabs);
+	}
+	if ($seccion == 'ver') {
+		View::renderizar('becas_ver',$tabs,$_GET['params']);
 	}
 
 	

@@ -25,4 +25,16 @@ class Registrar
 	
 }
 
+Class AdminUser
+{
+	public static function desbloquear($_matricula){
+		$connection = Connection::conectar();
+		$query = "UPDATE usuario SET errors=0, estado=1 WHERE matricula = ?";
+		$statement = $connection->prepare($query);
+		$statement->bind_param('s',$_matricula);
+		$statement->execute();
+		$statement->store_result();
+	}
+}
+
 ?>

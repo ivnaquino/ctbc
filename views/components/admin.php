@@ -15,9 +15,15 @@
 			);
 		Registrar::alumno($_alumno);
 	}
+	if (isset($_POST['desbloquear-usuario'])) {
+		AdminUser::desbloquear($_POST['matricula']);
+	}
 ?>
 
 <section class="container">
+	<div class="row"><!-- Desbloquear matricula -->
+
+	</div>
 	<div class="row">
 		<section class="span6"><!-- Alumno -->
 			<div class="well">
@@ -60,11 +66,20 @@
 						</div>
 					</div>
 					<div class="form-actions">
-						<button type='submit' name='alumno_registro'>Registrar</button>
+						<button type='submit' name='alumno_registro' class="btn btn-primary">Registrar</button>
 					</div>
 				</form>
 			</div>
 		</section><!-- Alumno -->
+		<section class="span6 "> <!-- Desbloquear usuario-->
+			<div class="well">
+				<form action="/admin" method="POST">
+					<legend class="text-center">Desbloquear usuario</legend>
+					<input type="text" class="span4" name="matricula" placeholder="Matricula">
+					<button type="submit" name="desbloquear-usuario" class="btn btn-primary">Desbloquear</button>
+				</form>
+			</div>
+		</section> <!-- Desbloquear usuario-->
 		<section class="span6"> <!-- Grupo-->
 			<div class="well">
 				<form action="/admin" method='POST' class="form-horizontal">

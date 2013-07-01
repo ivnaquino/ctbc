@@ -1,6 +1,6 @@
 <?php  
 	require_once "paths.php";
-	require_once CORE.'registrar.php';
+	require_once CORE.'rootprocess.php';
 	
 
 	if (!Auth::logged_on()) {

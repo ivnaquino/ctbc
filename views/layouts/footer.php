@@ -6,7 +6,6 @@
 		</div>
 	</div>
 </div>
-	<script src="<?php echo $layout_params['ruta_js'] ?>jquery.js"></script>
 	<script src="<?php echo $layout_params['ruta_js'] ?>bootstrap.js"></script>
 </body>
 </html>
