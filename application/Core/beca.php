@@ -102,6 +102,21 @@ class Beca
 			return false;
 		}
 	}
+	public static function registrar($_alumno){
+		$connection = Connection::conectar();
+		$query = "INSERT INTO becas (matricula,estado,descuento) VALUES (?, ?, ?)";
+		$statement = $connection->prepare($query);
+		$statement->bind_param('sii',$_alumno['matricula'],$_alumno['estado'],$_alumno['descuento']);
+		$statement->execute();
+		$statement->store_result();
+		if ($statement->affected_rows > 0) {
+			mysqli_close($connection);
+			return true;
+		}else{
+			mysqli_close($connection);
+			return false;
+		}
+	}
 
 }
 

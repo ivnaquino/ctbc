@@ -1,4 +1,5 @@
 <?php 
+Singleton:
 
 class Alumno{
 	public function __construct(){

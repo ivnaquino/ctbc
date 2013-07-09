@@ -1,4 +1,5 @@
 <?php 
+Singleton:
 
 class Connection{
 	public function __construct(){

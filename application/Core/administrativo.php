@@ -1,4 +1,5 @@
 <?php 
+Singleton:
 
 class Administrativo{
 	public function __construct()

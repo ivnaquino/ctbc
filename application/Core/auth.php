@@ -1,4 +1,5 @@
 <?php 
+Singleton:
 
 class Auth{
 	public function __construct(){

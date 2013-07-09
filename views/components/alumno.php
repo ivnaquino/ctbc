@@ -12,7 +12,7 @@
 				<?php if ($beca_alumno['estado']==1): ?>
 					<span class="label label-success">&nbsp;&nbsp;Activo&nbsp;&nbsp;</span>
 				<?php else: ?>
-					<span class="label label-error">&nbsp;&nbsp;Inactivo&nbsp;&nbsp;</span>
+					<span class="label label-error">&nbsp;&nbsp; <a href="/estudiosocioeconomico">Inactivo</a> &nbsp;&nbsp;</span>
 				<?php endif ?>
 			<?php else: ?>
 				<span class="label label-error">&nbsp;&nbsp;No asignada&nbsp;&nbsp;</span>

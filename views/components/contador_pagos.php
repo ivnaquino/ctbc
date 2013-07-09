@@ -19,8 +19,7 @@ if (isset($_POST['aceptar'])) {
 		'monto' => $_POST['monto'],
 		'estado' => 'pagado'
 		);
-	$pago_error = Pago::pagar($pago_actual);
-	echo $pago_error;
+	$_pago_success = Pago::pagar($pago_actual);
 }
 if (isset($_POST['aplazar'])) {
 	$pago_actual = array(
@@ -31,8 +30,7 @@ if (isset($_POST['aplazar'])) {
 		'monto' => $_POST['monto'],
 		'estado' => 'aplazado'
 		);
-	$pago_error = Pago::pagar($pago_actual);
-	echo $pago_error;
+	$_pago_success = Pago::pagar($pago_actual);
 }
 
  ?>
@@ -40,6 +38,21 @@ if (isset($_POST['aplazar'])) {
 	<div class="row">
 		<section class="span8 offset2">
 			<div class="well">
+				<?php if (isset($_pago_success)): ?>
+					<div class="mensajes">
+						<?php if ($_pago_success['state']): ?>
+							<div class="alert alert-success">
+								<a class="close" data-dismiss="alert">&times;</a>
+								<strong>Correcto!</strong> <?php echo $_pago_success['mensaje']; ?>
+							</div>
+						<?php else: ?>
+							<div class="alert alert-error">
+								<a class="close" data-dismiss="alert">&times;</a>
+								<strong>Error!</strong> <?php echo $_pago_success['mensaje']; ?>
+							</div>
+						<?php endif ?>
+					</div>
+				<?php endif ?>
 				<form action="/contaduria/pagos/" class="form-horizontal" method='POST'>
 					<legend class='text-center'>Formulario de pago</legend>
 					<div class="control-group">
@@ -68,13 +81,14 @@ if (isset($_POST['aplazar'])) {
 						<label for="descuento" class='control-label'>Descuento</label>
 						<div class="controls">
 							<input type="text" id='descuento' name='descuento' class='span5' placeholder='Descuento' disabled
-							value="<?php if(isset($_a_descuento)){ echo $_a_descuento; } ?>" >
+							value="<?php if(isset($_a_descuento)){ if($_a_descuento){ echo $_a_descuento; }else{ echo 0;} } ?>" >
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="concepto">Concepto</label>
 						<div class="controls">
 							<select id="concepto" class='span5' name='concepto'>
+								<option value='colegiatura' monto='0'>Elija una opcion...</option>
 								<option value='colegiatura' monto='3050'>Colegiatura</option>
 								<option value='inscripcion' monto='3200'>Inscripcion</option>
 								<option value='examen extraordinario' monto='1200'>Examen Extraordinario</option>
@@ -104,10 +118,16 @@ if (isset($_POST['aplazar'])) {
 
 <script>
 	$(document).on("ready",function(){
-
+		$("#concepto").on("change",function(){
+			var monto = parseInt($("#concepto option:selected").attr('monto'));
+			var desc = ($('#descuento').attr('value'));
+			if (desc == ''){
+				desc = 0;
+			}else{
+				desc = parseInt($('#descuento').attr('value'));
+			}
+			var total = monto - desc;
+			$('#monto').attr('value', total);
+		});
 	})
-	$("#concepto").on("change",function(){
-		var monto = ($("#concepto option:selected").attr('value'));
-		var desc = ($('#descuento').attr('value'));
-	});
 </script>

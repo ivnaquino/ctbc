@@ -1,5 +1,5 @@
 <?php  
-
+Singleton:
 class Pago
 {
 	public function __construct(){}
@@ -65,10 +65,16 @@ class Pago
 		$statement->store_result();
 		if ($statement->affected_rows == 1) {
 			mysqli_close($connection);
-			return true;
+			return array(
+				'state' => true,
+				'mensaje' => 'El proceso se ha completado con exito'
+				);
 		}else{
 			mysqli_close($connection);
-			return false;
+			return array(
+				'state' => false,
+				'mensaje' => 'El proceso no ha finalizado con exito'
+				);
 		}
 	}
 	public static function concepto($_concepto_id){
