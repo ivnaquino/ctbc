@@ -1,5 +1,8 @@
 <?php  
-
+	/*------------------------------------------------------------------------------*
+	* Configuracion de las rutas de host en donde se encontraran los archivos       *
+	* de tipo publico como los css js img 											*
+	--------------------------------------------------------------------------------*/
 	$layout_params = array(
 		'ruta_css' => SERVIDOR.'/public/css/' ,
 		'ruta_js' => SERVIDOR.'/public/js/' ,

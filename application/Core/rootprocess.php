@@ -2,7 +2,6 @@
 
 class Registrar
 {
-	function __construct(){}
 
 	public static function grupo($grupo){
 		$connection = Connection::conectar();

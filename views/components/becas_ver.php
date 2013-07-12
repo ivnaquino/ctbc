@@ -7,6 +7,10 @@
 	if (isset($_POST['inhabilitar-step1'])) {
 		$_validar_inhabilitado = Beca::inhabilitar($_alumno['matricula']);
 	}
+	if (isset($_POST['habilitar-beca'])) {
+		$_validar_habilitado = Beca::habilitar($_alumno['matricula']);
+	}
+	
 	$_beca = Beca::alumno($_alumno['matricula']);
 ?>
 <section class="container">
@@ -36,6 +40,19 @@
 							<div class="alert alert-error">
 								<a class="close" data-dismiss="alert">&times;</a>
 								<strong>Error!</strong> Ha sucedido un error durante el proceso
+							</div>
+						<?php endif ?>
+					<?php endif ?>
+					<?php if (isset($_validar_habilitado)): ?>
+						<?php if ($_validar_habilitado): ?>
+							<div class="alert alert-success">
+								<a class="close" data-dismiss="alert">&times;</a>
+								<strong>Correcto!</strong> La beca ha sido habilitada con correctamente.
+							</div>
+						<?php else: ?>
+							<div class="alert alert-error">
+								<a class="close" data-dismiss="alert">&times;</a>
+								<strong>Error!</strong> El proceso no se ha podido realizar con exito.
 							</div>
 						<?php endif ?>
 					<?php endif ?>
@@ -81,7 +98,11 @@
 					</div>
 					<div class="form-actions">
 						<button type="submit" name="eliminar-step1" class='btn btn-danger'>Eliminar beca</button>
-						<button type="submit" name="inhabilitar-step1" class='btn btn-warning'>Inhabilitar beca</button>
+						<?php if ($_beca['estado']): ?>
+							<button type="submit" name="inhabilitar-step1" class='btn btn-warning'>Inhabilitar beca</button>
+						<?php else: ?>
+							<button type="submit" name="habilitar-beca" class='btn btn-success'>Habilitar beca</button>
+						<?php endif ?>
 					</div>
 				</form>
 			</div>

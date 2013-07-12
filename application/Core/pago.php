@@ -2,8 +2,6 @@
 Singleton:
 class Pago
 {
-	public function __construct(){}
-
 	public static function all(){
 		$connection = Connection::conectar();
 

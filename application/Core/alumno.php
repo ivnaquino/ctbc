@@ -2,9 +2,6 @@
 Singleton:
 
 class Alumno{
-	public function __construct(){
-	}
-
 	public static function buscar($matricula)
 	{
 		$connection = Connection::conectar();

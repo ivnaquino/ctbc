@@ -21,7 +21,7 @@ class View
 			include_once $ruta_v;
 			include_once ROOT.'views'.DS.'layouts'.DS.'footer.php';
 		}else{
-			throw new Exception("Error al procesar la vista", 1);
+			throw new Exception("Error al procesar la pagina solicitada ", 1);
 		}
 	}
 }

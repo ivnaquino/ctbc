@@ -1,9 +1,8 @@
+
 <?php 
 Singleton:
 
 class Auth{
-	public function __construct(){
-	}
 	public static function logged_on()
 	{
 		return isset($_SESSION['matricula']);
