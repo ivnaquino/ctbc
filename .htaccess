@@ -1,20 +1,7 @@
 RewriteEngine On
-RewriteBase /
-RewriteCond %{REQUEST_FILENAME} !-f
+
 RewriteCond %{REQUEST_FILENAME} !-d
-Options +Indexes +MultiViews +FollowSymlinks
-Options All -Indexes
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
 
-AddDefaultCharset utf-8
-ErrorDocument 404 /404.php
-
-
-RewriteRule  ./index.php [L]
-RewriteRule ^inicio$ ./index.php [L]
-RewriteRule ^login$ ./login.php [L]
-RewriteRule ^logout$ ./logout.php [L]
-RewriteRule ^contaduria/(.*)/$ ./contaduria.php?tab=$1 [L]
-RewriteRule ^becas/(.*)/(.*)$ ./becas.php?tab=$1&params=$2 [L]
-RewriteRule ^alumno$ ./alumno.php [L]
-RewriteRule ^admin$ ./admin.php [L]
-RewriteRule ^estudiosocioeconomico$ ./estudiosocioeconom.php [L]
+RewriteRule ^(.+)$  index.php?url=$1 [QSA,L]

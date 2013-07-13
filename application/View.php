@@ -1,31 +1,26 @@
-<?php 
+<?php  
 
 class View
 {
-	public $_params;
-	public $parametro;
+	private $_controller;
 
-	public function __construct(){
+	public function __construct(Request $peticion){
+		$this->_controller = $peticion->getController();
 	}
-	public static function renderizar($vista,$item=false,$param_ver=false){
-		$ruta_v = ROOT.'views'.DS.'components'.DS.$vista.'.php';
-		$_params = $item;
-		$parametro = $param_ver;
+	public function renderizar($vista,$items = false){
+		$routeVista = ROOT.'views'.DS.$this->_controller.DS.$vista.'.php';
+		$this->_css =  BASE_URL.'views/'.DEFAULT_LAYOUT.'/css/';
+		$this->_js  =  BASE_URL.'views/'.DEFAULT_LAYOUT.'/js/';
+		$this->_img =  BASE_URL.'views/'.DEFAULT_LAYOUT.'/img/';
 
-		$usuario = Auth::usuario();
-		global $layout_params;
-
-		if (is_readable($ruta_v)) {
-			include_once ROOT.'views'.DS.'layouts'.DS.'header.php';
-			include_once ROOT.'views'.DS.'nav'.DS.'nav.php';
-			include_once $ruta_v;
-			include_once ROOT.'views'.DS.'layouts'.DS.'footer.php';
+		if (is_readable($routeVista)) {
+			include_once ROOT.'views'.DS.DEFAULT_LAYOUT.DS.'header.php';
+			include_once $routeVista;
+			include_once ROOT.'views'.DS.DEFAULT_LAYOUT.DS.'footer.php';
 		}else{
-			throw new Exception("Error al procesar la pagina solicitada ", 1);
+			throw new Exception("Error al procesar la vista, al parecer la vista que has indicado no ha podido ser encontrada", 1);	
 		}
 	}
 }
 
-
-
- ?>
+?>

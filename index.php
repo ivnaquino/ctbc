@@ -1,29 +1,31 @@
-<?php 
-	require_once "paths.php";
+<?php  
+	define("DS", DIRECTORY_SEPARATOR);
+	define("ROOT", realpath(dirname(__FILE__)).DS);
+	define("APP_PATH", ROOT.'application'.DS);
+	define("LIBS_PATH", ROOT.'libs'.DS);
 
-	if (!Auth::logged_on()) {
-		header('Location: /login');
+	require_once APP_PATH."Config.php";
+	require_once APP_PATH."Request.php";
+	require_once APP_PATH."Bootstrap.php";
+	require_once APP_PATH."Controller.php";
+	require_once APP_PATH."Registro.php";
+	require_once APP_PATH."View.php";
+	require_once APP_PATH."Session.php";
+	require_once LIBS_PATH."php-activerecord".DS."ActiveRecord.php";
+
+	Session::init();
+
+	 ActiveRecord\Config::initialize(function($cfg){
+	    $cfg->set_model_directory('model');
+	    $cfg->set_connections(array(
+	         'development' => 'mysql://'.DB_USER.':'.DB_PASS.'@localhost/'.DB_NAME.''));
+	 });
+
+	try{
+		Bootstrap::run(new Request);
+	}catch(Exception $e){
+		echo $e->getMessage();
+		//header("Location: ".BASE_URL."error/error404");
 	}
-	$usuario = Auth::usuario();
-	require_once $layout_components['ruta_header'];
-	require_once $layout_components['ruta_nav'];
 
-		
-		if ($_SESSION['tipo'] == 'contaduria') {
-			header('Location: /contaduria/pagos/');
-		}
-		if ($_SESSION['tipo'] == 'alumno') {
-			header('Location: /alumno');
-		}
-		if ($_SESSION['tipo'] == 'becas') {
-			header('Location: /becas/inicio/');
-		}
-		if ($_SESSION['tipo'] == 'admin') {
-			header('Location: /admin');
-		}
-?>
-
-
-<?php
-	require_once $layout_components['ruta_footer']; 
 ?>

@@ -1,0 +1,11 @@
+body{
+	margin-top: 60px;
+}
+.well{
+	background: rgb(251,251,251);
+}
+@media (max-width: 980px) {
+	body{
+		margin-top: 0px;
+	}
+}
