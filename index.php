@@ -16,9 +16,9 @@
 	Session::init();
 
 	 ActiveRecord\Config::initialize(function($cfg){
-	    $cfg->set_model_directory('model');
+	    $cfg->set_model_directory('models');
 	    $cfg->set_connections(array(
-	         'development' => 'mysql://'.DB_USER.':'.DB_PASS.'@localhost/'.DB_NAME.''));
+	         'development' => 'mysql://'.DB_USER.':'.DB_PASS.'@'.DB_HOST.'/'.DB_NAME.''));
 	 });
 
 	try{

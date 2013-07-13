@@ -14,7 +14,7 @@ class adminController extends Controller
 		}
 		if (isset($_POST['desbloquear'])) {
 			$user = User::find_by_matricula($_POST['matricula']);
-			if ($user) {
+			if (!empty($user)) {
 				$user->errores = 0;
 				$user->estado = 1;
 				$user->save();
@@ -24,7 +24,7 @@ class adminController extends Controller
 					);
 			}else{
 				$this->_view->confirmacion = array(
-					'estado' => true,
+					'estado' => false,
 					'mensaje' => 'La matricula no ha sido encontrada'
 					);
 			}
@@ -57,8 +57,35 @@ class adminController extends Controller
 				'errores' =>0,
 				'estado'=>1
 				);
-			Alumno::create($_alumno);
-			User::create($usuario);
+
+			try {
+				Alumno::create($_alumno);
+				$this->_view->confirm_create_alumno = array('estado'=>true,'mensaje'=>'El alumno ha sido registrado exitosamente');
+			} catch (Exception $e) {
+				$alm=Alumno::find_by_matricula($_POST['matricula']);
+				if (empty($alm)) {
+					$this->_view->confirm_create_alumno = array('estado'=>false,'mensaje'=>'No se ha podido registrar el alumno');
+				}else{
+					$this->_view->confirm_create_alumno = array('estado'=>false,'mensaje'=>'La matricula ya se encuentra registrada.');
+				}
+			}
+			try {
+				$uss = User::find_by_matricula($_POST['matricula']);
+				if (empty($uss)) {
+					User::create($usuario);
+					$this->_view->confirm_create_usuario = array('estado'=>true,'mensaje'=>'El usuario ha sido registrado exitosamente');
+				}else{
+					$this->_view->confirm_create_usuario = array('estado'=>false,'mensaje'=>'La matricula de usuario ya esta registrada');
+				}
+				
+			} catch (Exception $e) {
+				$uss = User::find_by_matricula($_POST['matricula']);
+				if (empty($uss)) {
+					$this->_view->confirm_create_usuario = array('estado'=>false,'mensaje'=>'No se ha podido registrar el usuario');
+				}else{
+					$this->_view->confirm_create_usuario = array('estado'=>false,'mensaje'=>'La matricula ya se encuentra registrada.');
+				}
+			}
 			
 		}
 		$this->_view->grupos = Grupo::all(array('order' => 'nombre,cuatrimestre'));

@@ -36,7 +36,7 @@
 						<label for="descuento" class="control-label">Descuento: </label>
 						<div class="controls">
 							<input type="text" name="descuento" id="descuento" class='span5' 
-							value="<?php if($this->_alumno_beca){echo $this->_alumno_beca->descuento;} ?>" placeholder="Descuento" disabled>
+							value="<?php if($this->_alumno_beca){if($this->_alumno_beca->estado == 1){echo $this->_alumno_beca->descuento;}} ?>" placeholder="Descuento" disabled>
 						</div>
 					</div>
 					<div class="control-group">

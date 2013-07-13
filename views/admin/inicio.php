@@ -1,7 +1,7 @@
 <section class="container">
 	<div class="row">
 		<div class="span6 offset3">
-			<p><strong>Bienvenido</strong> al panel de administracion usted cuenta puede realizar las siguisntes operaciones</p>
+			<p><strong>Bienvenido</strong> al panel de administracion usted cuenta puede realizar las siguientes operaciones</p>
 		</div>
 	</div>
 	<div class="row">
@@ -11,12 +11,12 @@
 					<?php if ($this->confirmacion['estado']): ?>
 						<div class="alert alert-success">
 							<a class="close" data-dismiss="alert">&times;</a>
-							<strong>Correctp!</strong> <?php echo $this->confirmacion['mensaje']; ?>
+							<strong>Correcto!</strong> <?php echo $this->confirmacion['mensaje']; ?>
 						</div>
 					<?php else: ?>
 						<div class="alert alert-error">
 							<a class="close" data-dismiss="alert">&times;</a>
-							<strong>Correctp!</strong> <?php echo $this->confirmacion['mensaje']; ?>
+							<strong>Error!</strong> <?php echo $this->confirmacion['mensaje']; ?>
 						</div>
 					<?php endif ?>
 				<?php endif ?>

@@ -6,7 +6,7 @@
 	*  metodo que se ejecutara al no haber parametro de method en el 		|
 	* Request 																|
 	----------------------------------------------------------------------*/
-	define("BASE_URL", "http://".$_SERVER['SERVER_NAME']."/ctbc/");
+	define("BASE_URL", "http://".$_SERVER['SERVER_NAME']."/");
 	
 	define("DEFAULT_CONTROLLER", "home");
 	define("DEFAULT_METHOD", "index");

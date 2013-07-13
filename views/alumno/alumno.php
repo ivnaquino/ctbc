@@ -8,7 +8,7 @@
 					<?php if ($this->beca->estado == 1): ?>
 						<span class="label label-success">&nbsp;&nbsp;Activo&nbsp;&nbsp;</span>
 					<?php else: ?>
-						<span class="label label-info">&nbsp;&nbsp;Inactivo&nbsp;&nbsp;</span>
+						<span class="label label-warning">&nbsp;&nbsp;Inactivo&nbsp;&nbsp;</span>
 					<?php endif ?>
 				<?php else: ?>
 					<span class="label label-success">&nbsp;&nbsp;<a href="<?php echo BASE_URL ?>alumno/estudiosocioeconomico">Sin asignar</a>&nbsp;&nbsp;</span>

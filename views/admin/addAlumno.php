@@ -2,6 +2,34 @@
 	<div class="row">
 		<div class="span8 offset2">
 			<div class="well">
+				<div id="confirmations">
+					<?php if (isset($this->confirm_create_alumno)): ?>
+						<?php if ($this->confirm_create_alumno['estado']): ?>
+							<div class="alert alert-success">
+								<a class="close" data-dismiss="alert">&times;</a>
+								<strong>Correcto!</strong> <?php echo $this->confirm_create_alumno['mensaje']; ?>
+							</div>
+						<?php else: ?>
+							<div class="alert alert-error">
+								<a class="close" data-dismiss="alert">&times;</a>
+								<strong>Error!</strong> <?php echo $this->confirm_create_alumno['mensaje']; ?>
+							</div>
+						<?php endif ?>
+					<?php endif ?>
+					<?php if (isset($this->confirm_create_usuario)): ?>
+						<?php if ($this->confirm_create_usuario['estado']): ?>
+							<div class="alert alert-success">
+								<a class="close" data-dismiss="alert">&times;</a>
+								<strong>Correcto!</strong> <?php echo $this->confirm_create_usuario['mensaje']; ?>
+							</div>
+						<?php else: ?>
+							<div class="alert alert-error">
+								<a class="close" data-dismiss="alert">&times;</a>
+								<strong>Error!</strong> <?php echo $this->confirm_create_usuario['mensaje']; ?>
+							</div>
+						<?php endif ?>
+					<?php endif ?>
+				</div>
 				<form action="<?php echo BASE_URL.Session::get('tipo') ?>/addAlumno" method='POST' class="form-horizontal">
 					<legend>Registro de alumnos</legend>
 					<div class="control-group">

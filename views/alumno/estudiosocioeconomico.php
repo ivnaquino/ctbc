@@ -515,3 +515,12 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="span2 offset5">
+				<br>
+				<input type="button" onclick="window.print();" value='Imprimir' class="btn btn-primary">
+			</div>
+		</div>
+	</div>
