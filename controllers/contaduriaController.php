@@ -4,6 +4,7 @@ class contaduriaController extends Controller
 {
 	public function __construct(){
 		parent::__construct();
+		$this->_view->tabs = array("Reporte","Pago");
 	}
 	public function index(){
 		if (!Session::active('usuario')) {
@@ -22,7 +23,6 @@ class contaduriaController extends Controller
 			header("Location: ".BASE_URL."");
 		}
 		$administrativo = Administrativo::find_by_matricula(Session::get('usuario'));
-		$this->_view->tabs = array("reporte","pago");
 		$this->_view->usuario = $administrativo;
 
 		$this->_view->pagos = Pago::all(array('order' => 'id DESC,fecha DESC'));
@@ -39,9 +39,16 @@ class contaduriaController extends Controller
 		}
 		if (isset($_POST['setAlumno'])) {
 			$_alum = Alumno::find_by_matricula($_POST['matricula']);
-			$this->_view->_alumno = $_alum;
-			$this->_view->_alumno_grupo = Grupo::find_by_id($_alum->grupo);
-			$this->_view->_alumno_beca = Beca::find_by_matricula($_POST['matricula']);
+			if (empty($_alum)) {
+				$this->_view->_error_get_alumno=array('mensaje'=>'No se ha encontrado la matricula especificada');
+				$this->_view->_alumno = false;
+				$this->_view->_alumno_grupo = false;
+				$this->_view->_alumno_beca = false;
+			}else{
+				$this->_view->_alumno = $_alum;
+				$this->_view->_alumno_grupo = Grupo::find_by_id($_alum->grupo);
+				$this->_view->_alumno_beca = Beca::find_by_matricula($_POST['matricula']);
+			}
 		}else{
 			$this->_view->_alumno = false;
 			$this->_view->_alumno_grupo = false;
@@ -73,7 +80,6 @@ class contaduriaController extends Controller
 		}
 
 		$administrativo = Administrativo::find_by_matricula(Session::get('usuario'));
-		$this->_view->tabs = array("reporte","pago");
 		$this->_view->usuario = $administrativo;
 		$this->_view->_titulo = "Contaduria - Pagos";
 		$this->_view->renderizar('pagos');

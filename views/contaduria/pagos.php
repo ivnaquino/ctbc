@@ -8,6 +8,12 @@
 						<strong>Correcto!</strong> <?php echo $this->_mensaje; ?>
 					</div>
 				<?php endif ?>
+				<?php if (isset($this->_error_get_alumno)): ?>
+					<div class="alert alert-error">
+						<a class="close" data-dismiss="alert">&times;</a>
+						<strong>Error!</strong> <?php echo $this->_error_get_alumno['mensaje']; ?>
+					</div>
+				<?php endif ?>
 				<form action="<?php echo BASE_URL.Session::get('tipo').'/pago/'; ?>" method='POST' class="form-horizontal">
 					<legend class='text-center'>Formulario de pago</legend>
 					<div class="control-group">

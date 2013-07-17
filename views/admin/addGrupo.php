@@ -2,6 +2,19 @@
 	<div class="row">
 		<div class="span6 offset3">
 			<div class="well">
+				<?php if (isset($this->_conf_grupo)): ?>
+					<?php if ($this->_conf_grupo['estado']): ?>
+						<div class="alert alert-success">
+							<a class="close" data-dismiss="alert">&times;</a>
+							<strong>Correcto!</strong> <?php echo $this->_conf_grupo['mensaje']; ?>
+						</div>
+					<?php else: ?>
+						<div class="alert alert-error">
+							<a class="close" data-dismiss="alert">&times;</a>
+							<strong>Correcto!</strong> <?php echo $this->_conf_grupo['mensaje']; ?>
+						</div>
+					<?php endif ?>
+				<?php endif ?>
 				<form action="<?php echo BASE_URL.Session::get('tipo') ?>/addGrupo" method='POST' class="form-horizontal">
 					<legend> Registro de grupos </legend>
 					<div class="control-group">

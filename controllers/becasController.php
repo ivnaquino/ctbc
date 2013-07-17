@@ -4,6 +4,7 @@ class becasController extends Controller
 {
 	public function __construct(){
 		parent::__construct();
+		$this->_view->tabs = array("Inicio","Solicitudes");
 	}
 	public function index(){
 		if (!Session::active('usuario')) {
@@ -13,7 +14,7 @@ class becasController extends Controller
 			header("Location: ".BASE_URL."");
 		}
 		$administrativo = Administrativo::find_by_matricula(Session::get('usuario'));
-		$this->_view->tabs = array("inicio","solicitudes");
+		
 		$this->_view->usuario = $administrativo;
 		$this->_view->becas = Beca::all();
 		$this->_view->_titulo = "Becas - Inicio";
@@ -47,7 +48,6 @@ class becasController extends Controller
 			
 		}
 		$administrativo = Administrativo::find_by_matricula(Session::get('usuario'));
-		$this->_view->tabs = array("inicio","solicitudes");
 		$this->_view->usuario = $administrativo;
 		$this->_view->becas = Beca::all();
 		$this->_view->_titulo = "Becas - Solicitud";
@@ -78,7 +78,6 @@ class becasController extends Controller
 		}
 		$alumno = Alumno::find_by_matricula($matricula);
 		$administrativo = Administrativo::find_by_matricula(Session::get('usuario'));
-		$this->_view->tabs = array("inicio","solicitudes");
 		$this->_view->usuario = $administrativo;
 		$this->_view->_alumno = $alumno;
 		$this->_view->_grupo  = Grupo::find_by_id($alumno->grupo);

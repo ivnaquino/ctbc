@@ -1,7 +1,7 @@
 <section class="container">
 	<div class="row">
 		<div class="span6 offset3">
-			<p><strong>Bienvenido</strong> al panel de administracion usted cuenta puede realizar las siguientes operaciones</p>
+			<p><strong>Bienvenido</strong> al panel de administracion usted cuenta con las siguientes operaciones.</p>
 		</div>
 	</div>
 	<div class="row">

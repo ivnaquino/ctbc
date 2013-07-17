@@ -4,6 +4,7 @@ class adminController extends Controller
 {
 	public function __construct(){
 		parent::__construct();
+		$this->_view->tabs = array("Inicio");
 	}
 	public function index(){
 		if (!Session::active('usuario')) {
@@ -103,7 +104,13 @@ class adminController extends Controller
 		}
 		if (isset($_POST['grupo_registro'])) {
 			$grupo_registro = array('nombre'=>$_POST['nombre'],'cuatrimestre'=>$_POST['cuatrimestre']);
-			Grupo::create($grupo_registro);
+			$_exits_grupo = (Grupo::find(array('conditions'=>array('nombre = ? AND cuatrimestre = ?',$grupo_registro['nombre'],$grupo_registro['cuatrimestre']))));
+			if (empty($_exits_grupo)) {
+				Grupo::create($grupo_registro);
+				$this->_view->_conf_grupo = array('estado'=>true,'mensaje'=>'El grupo se ha registrado correctamente');
+			}else{
+				$this->_view->_conf_grupo = array('estado'=>false,'mensaje'=>'El grupo ya existe');
+			}
 		}
 		$this->_view->_titulo = "Agregar Grupo";
 		$this->_view->renderizar('addGrupo');
@@ -124,15 +131,40 @@ class adminController extends Controller
 				'apellidopat' => $_POST['apellidopat'],
 				'apellidomat' => $_POST['apellidomat'],
 				);
-			$usuario = array(
+			$_usuario = array(
 				'matricula'=>$_POST['matricula'],
 				'password'=>$_POST['password'],
 				'tipo'=>$_POST['tipo'],
 				'errores' =>0,
 				'estado'=>1
 				);
-			Administrativo::create($_adminstrativo);
-			User::create($usuario);
+			$adminis = Administrativo::find_by_matricula($_POST['matricula']);
+			if (empty($adminis)) {
+				try {
+					Administrativo::create($_adminstrativo);
+					try {
+						User::create($_usuario);
+						$this->_view->confirm_create_administrativo = array('estado'=>true,'mensaje'=>'El Administrativo registrado exitosamente');
+						$this->_view->confirm_create_usuario = array('estado'=>true,'mensaje'=>'El Usuario se ha registrado exitosamente');
+					} catch (Exception $e2) {
+						//Remover administrativo
+						$administ = Administrativo::find_by_matricula($_POST['matricula']);
+						$administ->delete();
+						$this->_view->confirm_create_administrativo = array('estado'=>false,'mensaje'=>'El Administrativo no se ha pidido registrar');
+						$this->_view->confirm_create_usuario = array('estado'=>false,'mensaje'=>'El Usuario no se ha pidido registrar');
+					}
+				} catch (Exception $e) {
+					echo $e->getMessage();
+					$this->_view->confirm_create_administrativo = array('estado'=>false,'mensaje'=>'El Administrativo no se ha pidido registrar');
+					$this->_view->confirm_create_usuario = array('estado'=>false,'mensaje'=>'El Usuario no se ha pidido registrar');
+				}
+			}else{
+				$this->_view->confirm_create_administrativo = array('estado'=>false,'mensaje'=>'El Administrativo ya se encuentra registrado');
+					$this->_view->confirm_create_usuario = array('estado'=>false,'mensaje'=>'El Usuario ya se encuentra registrado');
+			}
+
+			//Administrativo::create($_adminstrativo);
+			//User::create($usuario);
 		}
 		$this->_view->_titulo = "Agregar Administrativo";
 		$this->_view->renderizar('addAdministrativo');
@@ -147,7 +179,6 @@ class adminController extends Controller
 			header("Location: ".BASE_URL."");
 		}
 		if (isset($_POST['addAdmin'])) {
-			print_r($_POST);
 			$usuario = array(
 				'matricula'=>$_POST['matricula'],
 				'password'=>$_POST['password'],
@@ -155,12 +186,25 @@ class adminController extends Controller
 				'errores' =>0,
 				'estado'=>1
 				);
-			User::create($usuario);
+			
+			$comprobar_usuario = User::find_by_matricula($_POST['matricula']);
+			if (empty($comprobar_usuario)) {
+				try {
+					User::create($usuario);
+					$this->_view->confirm_create_usuario = array('estado'=>true,'mensaje'=>'El Usuario se ha registrado exitosamente');
+				} catch (Exception $e) {
+					$this->_view->confirm_create_usuario = array('estado'=>false,'mensaje'=>'El Usuario no se ha podido registrar');
+				}
+			}else{
+				$this->_view->confirm_create_usuario = array('estado'=>false,'mensaje'=>'El Usuario ya se encuentra registrado');
+			}
 		}
 		$this->_view->_titulo = "Agregar Administrador";
 		$this->_view->renderizar('addAdministrador');
 	}
-
+	public function inicio(){
+		header('Location: '.BASE_URL.'admin');
+	}
 
 }
 ?>
