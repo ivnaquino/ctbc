@@ -13,7 +13,6 @@
 	define("DEFAULT_LAYOUT", "ieso_theme");
 
 	define("PUBLICO", BASE_URL.'public/');
-
 	define("APP_NAME", "Sistema contaduria y becas");
 
 	/*---------------------------------------------------------------------\

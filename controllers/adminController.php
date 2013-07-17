@@ -162,9 +162,6 @@ class adminController extends Controller
 				$this->_view->confirm_create_administrativo = array('estado'=>false,'mensaje'=>'El Administrativo ya se encuentra registrado');
 					$this->_view->confirm_create_usuario = array('estado'=>false,'mensaje'=>'El Usuario ya se encuentra registrado');
 			}
-
-			//Administrativo::create($_adminstrativo);
-			//User::create($usuario);
 		}
 		$this->_view->_titulo = "Agregar Administrativo";
 		$this->_view->renderizar('addAdministrativo');

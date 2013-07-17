@@ -24,8 +24,8 @@
 	try{
 		Bootstrap::run(new Request);
 	}catch(Exception $e){
-		echo $e->getMessage();
-		//header("Location: ".BASE_URL."error/error404");
+		//echo $e->getMessage();
+		header("Location: ".BASE_URL."error");
 	}
 
 ?>
